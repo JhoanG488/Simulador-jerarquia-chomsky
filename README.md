@@ -7,18 +7,22 @@ Esta aplicación es una herramienta interactiva con Interfaz Gráfica de Usuario
 El proyecto está construido en Python y utiliza `customtkinter` para la interfaz gráfica.
 
 1. **Clonar el repositorio:**
-   ```bash 
+   ```bash
    git clone "https://github.com/JhoanG488/Simulador-jerarquia-chomsky"
    cd simulador-jerarquia-chomsky
 
 2. **Crear y activar un entorno virtual (Recomendado en macOS/Linux):**
-    ```python3 -m venv venv -> source venv/bin/activate
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
 
 3. **Instalar dependencias:**
-    ```pip install customtkinter
+    ```bash
+    pip install customtkinter
 
 4. **Ejecutar la aplicación:**
-    ```python3 main.py
+    ```bash
+    python3 main.py
 
 ## 🧪 Guía de Uso y Cadenas
 Desde el panel principal, selecciona el nivel que deseas simular. Ingresa una de las cadenas de prueba, presiona **"Cargar"** y luego utiliza el botón **"Siguiente Paso"** para iterar a través del procesamiento del autómata.
@@ -51,7 +55,7 @@ Cadenas válidas: 11+111 (resultado esperado: 11111), 1+1
 
 Cadenas inválidas: 11-11, 11+, +11
 
-**Detalles Técnicos por Autómata:**
+## Detalles Técnicos por Autómata:
 **DFA:** Implementado con un ciclo iterativo simple de transiciones de estados (q0, q1, q_error).
 
 **PDA:** Utiliza una estructura de datos tipo Pila (list en Python usando append y pop) simulando la memoria LIFO. El símbolo Z0 representa el fondo de la pila.
