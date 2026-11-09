@@ -5,7 +5,7 @@ class Nivel0Window(ctk.CTkToplevel):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.title("Nivel 0 - Máquina de Turing (MT)")
-        self.geometry("800x400")
+        self.geometry("1200x500")
 
         self.grid_columnconfigure(0, weight=1)
 
@@ -20,7 +20,22 @@ class Nivel0Window(ctk.CTkToplevel):
         self.btn_paso = ctk.CTkButton(self.frame_controles, text="Siguiente Paso", command=self.siguiente_paso, state="disabled")
         self.btn_paso.pack(side="left", padx=5)
         ctk.CTkButton(self.frame_controles, text="Limpiar", command=self.limpiar, fg_color="#C62828", hover_color="#b71c1c").pack(side="left", padx=5)
+        
+         #BOTON EJEMPLOS SUGERIDOS
+        self.combo_ejemplos = ctk.CTkOptionMenu(
+            self.frame_controles, 
+            values=["Ejemplos...", "🟢 11+111 (Válida)", "🟢 1+1 (Válida)", "🔴 11-11 (Inválida)"], 
+            command=self.usar_ejemplo
+        )
+        self.combo_ejemplos.pack(side="left", padx=15)
 
+
+        self.combo_ejemplos = ctk.CTkOptionMenu(
+            self.frame_controles, 
+            values=["Ejemplos sugeridos", "🟢 11+111 (Válida)", "🟢 1+1 (Válida)", "🔴 11-11 (Inválida)"], 
+            command=self.usar_ejemplo
+        )
+        
         self.frame_visual = ctk.CTkFrame(self)
         self.frame_visual.grid(row=1, column=0, padx=20, pady=10, sticky="nsew")
 
@@ -72,3 +87,11 @@ class Nivel0Window(ctk.CTkToplevel):
         self.btn_paso.configure(state="disabled")
         self.historial = []
         self.paso_actual = 0
+        
+    def usar_ejemplo(self, choice):
+        if choice != "Ejemplos...":
+            # Ignora el emoji en la posición 0 y toma la cadena en la posición 1
+            cadena = choice.split(" ")[1] 
+            self.entrada_cadena.delete(0, "end")
+            self.entrada_cadena.insert(0, cadena)
+        self.combo_ejemplos.set("Ejemplos...")

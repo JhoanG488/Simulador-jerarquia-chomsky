@@ -13,7 +13,7 @@ class SimuladorChomsky(ctk.CTk):
         super().__init__()
 
         self.title("Simulador Jerarquía de Chomsky")
-        self.geometry("600x500")
+        self.geometry("1200x400")
         self.resizable(False, False)
 
         # Contenedor principal
@@ -43,7 +43,7 @@ class SimuladorChomsky(ctk.CTk):
         # Variable para controlar ventanas secundarias abiertas
         self.ventana_actual = None
 
-    def abrir_nivel3(self):
+    def abrir_nivel3(self): 
         
          if self.ventana_actual is None or not self.ventana_actual.winfo_exists():
             self.ventana_actual = Nivel3Window(self)
@@ -71,7 +71,8 @@ class SimuladorChomsky(ctk.CTk):
             self.ventana_actual.grab_set()
         else:
             self.ventana_actual.focus()
-
+            
+    
 if __name__ == "__main__":
     app = SimuladorChomsky()
     app.mainloop()

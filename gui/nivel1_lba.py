@@ -5,7 +5,7 @@ class Nivel1Window(ctk.CTkToplevel):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.title("Nivel 1 - Autómata Linealmente Acotado (LBA)")
-        self.geometry("800x400")
+        self.geometry("1200x500")
 
         self.grid_columnconfigure(0, weight=1)
 
@@ -21,7 +21,17 @@ class Nivel1Window(ctk.CTkToplevel):
         self.btn_paso = ctk.CTkButton(self.frame_controles, text="Siguiente Paso", command=self.siguiente_paso, state="disabled")
         self.btn_paso.pack(side="left", padx=5)
         ctk.CTkButton(self.frame_controles, text="Limpiar", command=self.limpiar, fg_color="#C62828", hover_color="#b71c1c").pack(side="left", padx=5)
+        #boton ejemplos sugeridos:
+        self.combo_ejemplos = ctk.CTkOptionMenu(
+            self.frame_controles, 
+            values=["Ejemplos...", "🟢 abc (Válida)", "🟢 aabbcc (Válida)", "🔴 aabcc (Inválida)"], 
+            command=self.usar_ejemplo
+        )
+        self.combo_ejemplos.pack(side="left", padx=15)
 
+   
+        
+        
         # Visualización de Cinta Bidireccional
         self.frame_visual = ctk.CTkFrame(self)
         self.frame_visual.grid(row=1, column=0, padx=20, pady=10, sticky="nsew")
@@ -75,3 +85,11 @@ class Nivel1Window(ctk.CTkToplevel):
         self.btn_paso.configure(state="disabled")
         self.historial = []
         self.paso_actual = 0
+        
+         #BOTON EJEMPLOS SUGERIDOS
+    def usar_ejemplo(self, choice):
+        if choice != "Ejemplos...":
+            cadena = choice.split(" ")[1] 
+            self.entrada_cadena.delete(0, "end")
+            self.entrada_cadena.insert(0, cadena)
+        self.combo_ejemplos.set("Ejemplos...")

@@ -6,7 +6,7 @@ class Nivel2Window(ctk.CTkToplevel):
         # ... (Mantén todo el código del __init__ exactamente igual) ...
         super().__init__(master, **kwargs)
         self.title("Nivel 2 - Autómata de Pila (PDA)")
-        self.geometry("800x600")
+        self.geometry("1200x500")
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(2, weight=1)
@@ -29,6 +29,15 @@ class Nivel2Window(ctk.CTkToplevel):
 
         self.btn_limpiar = ctk.CTkButton(self.frame_controles, text="Limpiar", command=self.limpiar, fg_color="#C62828", hover_color="#b71c1c")
         self.btn_limpiar.pack(side="left", padx=5)
+        
+        # --- Botón de Ejemplos sugeridos ---
+        self.combo_ejemplos = ctk.CTkOptionMenu(
+            self.frame_controles, 
+            values=["Ejemplos sugeridos:", "🟢 aabb (Válida)", "🟢 aaabbb (Válida)", "🔴 aab (Inválida)", "🔴 baab (Inválida)"], 
+            command=self.usar_ejemplo
+        )
+        self.combo_ejemplos.pack(side="left", padx=15)
+        # ---------------------------------------
 
         # Panel central: Cinta (Entrada)
         self.frame_cinta = ctk.CTkFrame(self)
@@ -97,3 +106,12 @@ class Nivel2Window(ctk.CTkToplevel):
             self.vista_pila.insert("end", f" | {elem} |\n")
             self.vista_pila.insert("end", " +---+\n")
         self.vista_pila.configure(state="disabled")
+        
+        
+        #BOTON EJEMPLOS SUGERIDOS
+    def usar_ejemplo(self, choice):
+        if choice != "Ejemplos...":
+            cadena = choice.split(" ")[1] 
+            self.entrada_cadena.delete(0, "end")
+            self.entrada_cadena.insert(0, cadena)
+        self.combo_ejemplos.set("Ejemplos...")
